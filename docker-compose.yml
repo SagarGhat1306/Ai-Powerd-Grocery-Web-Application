@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:alpine
+    container_name: grocery-redis
+    ports:
+      - "127.0.0.1:6379:6379" # Secures Redis so it's only accessible internally on the server
+    restart: always
+
+  grocery-backend:
+    image: sagarpepcom/grocery-backend:latest
+    container_name: grocery-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    restart: always
+
+  grocery-frontend:
+    image: sagarpepcom/grocery-frontend:latest
+    container_name: grocery-frontend
+    ports:
+      - "3010:80"
+    restart: always
+
+  grocery-admin:
+    image: sagarpepcom/grocery-admin:latest
+    container_name: grocery-admin
+    ports:
+      - "3011:80" 
+    restart: always
