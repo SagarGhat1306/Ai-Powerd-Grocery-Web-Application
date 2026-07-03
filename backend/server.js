@@ -34,7 +34,10 @@ app.use(cors({
 
         // local development
         "http://localhost:5173",
-        "http://localhost:5174"
+        "http://localhost:5174",
+
+        "https://grocery-frontend-beta-seven.vercel.app",
+
     ], // Replace with your frontend URL (e.g., http://localhost:5173)
     credentials: true                // 3. Required to allow cookies to pass through CORS
 }));
@@ -53,9 +56,12 @@ app.use('/api/order', orderRouter);
 app.use("/api/ai", chatRouter);
 
 
-
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT} ✅`);
-});
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT} ✅`);
+    });
+}
+
+module.exports = app;
