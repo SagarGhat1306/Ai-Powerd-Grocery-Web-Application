@@ -4,7 +4,7 @@ const authAdmin = async (req, res, next) => {
     try {
         const { adminToken } = req.cookies;
 
-        // ❌ No token
+        //  No token
         if (!adminToken) {
             return res.status(401).json({
                 success: false,
@@ -15,7 +15,7 @@ const authAdmin = async (req, res, next) => {
         // ✅ Verify token
         const decoded = jwt.verify(adminToken, process.env.JWT_SECRET);
 
-        // ❌ Invalid admin
+        //  Invalid admin
         if (decoded.email !== process.env.ADMIN_EMAIL) {
             return res.status(403).json({
                 success: false,
@@ -23,7 +23,7 @@ const authAdmin = async (req, res, next) => {
             });
         }
 
-        // ✅ Attach admin info (VERY IMPORTANT for future use)
+        //  Attach admin info (VERY IMPORTANT for future use)
         req.adminEmail = decoded.email;
 
         next();

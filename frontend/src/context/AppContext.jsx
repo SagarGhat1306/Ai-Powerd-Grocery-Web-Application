@@ -32,7 +32,7 @@ export const AppContextProvider = ({ children }) => {
         }
     };
 
-    // ✅ FETCH CART
+    //  FETCH CART
     const fetchCart = async () => {
         try {
             const res = await fetch(`${backendUrl}/api/user/cart/get`, {
@@ -81,7 +81,7 @@ export const AppContextProvider = ({ children }) => {
         toast.success("Added to cart");
     };
 
-    // ✅ REMOVE CART ITEM
+    //  REMOVE CART ITEM
     const removeCartItem = async (itemId) => {
         let cartData = structuredClone(cartItems);
 

@@ -25,7 +25,7 @@ const addAddress = async (req, res) => {
 
         const newAddress = new Address(addressData);
         await newAddress.save();
-        await redisClient.del(`address:user:${userId}`);a
+        await redisClient.del(`address:user:${userId}`);
 
         res.json({ success: true, message: "Address added successfully", address: newAddress });
     } catch (error) {
@@ -51,7 +51,7 @@ const getAddresses = async (req, res) => {
             });
         }
 
-        // 🐢 DB call
+        // DB call
         const addresses = await Address.find({ userId });
 
         // ⚡ Store in Redis (TTL: 2 minutes)

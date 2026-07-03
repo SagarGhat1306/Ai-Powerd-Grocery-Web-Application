@@ -28,7 +28,14 @@ app.use(cookieParser());
 // 2. Use cookie-parser middleware
 
 app.use(cors({
-    origin: ["http://13.126.98.63", "http://13.126.98.63:8080"], // Replace with your frontend URL (e.g., http://localhost:5173)
+    origin: [
+        "http://13.126.98.63", 
+        "http://13.126.98.63:8080",
+
+        // local development
+        "http://localhost:5173",
+        "http://localhost:5174"
+    ], // Replace with your frontend URL (e.g., http://localhost:5173)
     credentials: true                // 3. Required to allow cookies to pass through CORS
 }));
 
